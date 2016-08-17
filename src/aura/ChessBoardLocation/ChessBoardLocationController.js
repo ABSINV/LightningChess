@@ -1,6 +1,7 @@
 ({
 	doInit: function (cmp, event, helper) {
         var location = cmp.get('v.location');
+        //Assign an initial piece to the location. If none by default then the piece remains empty.
         cmp.set('v.piece',location.piece);
 	},
     
