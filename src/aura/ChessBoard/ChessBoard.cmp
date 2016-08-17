@@ -1,0 +1,29 @@
+<aura:component controller='ChessGameController' extends="c:Abstract_Game" >
+    <!-- Set Attributes -->
+    <aura:attribute type="Array" name="locations"></aura:attribute>
+
+    <!-- Set Event Listeners -->
+    <!-- <aura:handler name="click" event="c:ChessboardLocationClicked" action="{!c.handleLocationClick}"/> -->
+    <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}"/>
+    <aura:handler event="c:Promotion_Complete" action="{!c.handlePromotion}"/>
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- Set Event thrown -->
+    <aura:registerEvent name="LocationAction" type="c:LocationAction"/>
+    <aura:registerEvent name="Promotion_Selection" type="c:LocationAction"/>
+
+     
+    
+    <aura:iteration var="row" items="{!v.locations}">
+        <aura:iteration var="location" items="{!row}">
+            <c:ChessBoardLocation location="{!location}" click="{!c.handleLocationClick}" />
+        </aura:iteration>   
+    </aura:iteration>  
+
+    <c:Promotion_Modal ></c:Promotion_Modal>     
+        
+       
+
+</aura:component>

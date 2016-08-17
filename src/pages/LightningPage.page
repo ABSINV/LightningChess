@@ -1,0 +1,27 @@
+<apex:page standardStylesheets="false" sidebar="false">
+
+    <apex:includelightning />
+
+
+
+    <div id="lightning" />
+
+
+
+    <script>
+        $Lightning.use("c:Lightning_game", function() {
+           $Lightning.createComponent("c:ChessBoard",
+
+          { Label:"",sessionId:'{!$API.Session_ID}',currentUser:'{!$User.Id}' },
+
+          "lightning",
+
+          function(cmp) {
+
+            // do some stuff
+
+          });
+        });
+
+    </script>
+</apex:page>

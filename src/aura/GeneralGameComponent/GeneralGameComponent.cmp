@@ -1,0 +1,58 @@
+<aura:component controller='ChessGameController' implements="force:appHostable">
+    <aura:attribute name="currentUser" type="String"></aura:attribute>
+    <aura:attribute name="currentTab" type="String" access="private" default="users"></aura:attribute>
+    <aura:attribute name="previousTab" type="String" access="private"></aura:attribute>
+    <aura:attribute name="challenges" type="Object[]" access="private" default="[]"></aura:attribute>
+
+    <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class='slds-grid'>
+<!-- Game location -->
+        <div class="slds-col slds-size--4-of-6" style="padding-right:10px;">
+        	<div class="slds-box slds-theme--default" aura:id="game_location" style="line-height:1;">
+<!--             	<c:ChessBoard currentUser="{!v.currentUser}"></c:ChessBoard>
+ -->        </div>
+        </div>
+
+<!-- User & Challenge panel -->
+        <div class="slds-col slds-size--2-of-6 right-side-panel">
+        	<div class="slds-tabs--scoped" style="height:100%;position:relative">
+                <!-- Tabs -->
+        		<ul class="slds-tabs--scoped__nav" role="tablist">
+        			<li class="{! 'slds-tabs--scoped__item slds-text-heading--label ' + ((v.currentTab == 'users') ? 'slds-active' : '')}" title="Item One" role="presentation" onclick="{!c.selectTab}" data-name="users">
+                        <a class="slds-tabs--scoped__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1">
+                            Users
+                        </a>
+                    </li>
+    				<li class="{!'slds-tabs--scoped__item slds-text-heading--label ' + ((v.currentTab == 'challenges') ? 'slds-active' : '')}" title="Item Two" role="presentation" onclick="{!c.selectTab}" data-name="challenges">
+                        <a class="slds-tabs--scoped__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2" >
+                            Challenges ({!v.challenges.length})
+                        </a>
+                    </li>
+    			</ul>
+
+                <!-- User list -->
+    			<div aura:id="user-tab" class="slds-tabs--scoped__content slds-show right-panel-tab" role="tabpanel" aria-labelledby="tab-scoped-1__item" style="background-color:#FDFDFD; position: relative;">
+        		    <c:PlayerList currentUser='{!v.currentUser}'></c:PlayerList>
+                    
+        		</div>
+
+                <!-- Challenge list -->
+	            <div aura:id="challenge-tab" class="slds-tabs--scoped__content slds-hide right-panel-tab" role="tabpanel" aria-labelledby="tab-scoped-2__item" style="background-color:#FDFDFD;position: relative;">
+                    <c:PlayerChallengeList currentUser="{!v.currentUser}" challenges="{!v.challenges}"></c:PlayerChallengeList>
+	            </div>
+
+                <div style="width:100%;position:absolute;bottom:0; text-align:center">
+                    <img src="/resource/absilightning" style="width:80%"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <c:StreamingAPIListener listeners="NewChessBoard,NewChessboardMove,LoggedInPlayer,UserGameChallenge">
+
+    </c:StreamingAPIListener>
+</aura:component>

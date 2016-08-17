@@ -1,0 +1,16 @@
+<aura:component >
+	<aura:attribute name="location" type="Object"></aura:attribute>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:LocationAction" action="{!c.handleActionEvent}"/>
+    
+    <aura:registerEvent name="click" type="c:ChessboardLocationClicked"/>
+
+
+    <div class="{!'ChessBoardLocation ' + if(v.location.selected,'selected',if(((v.location.x + v.location.y) % 2) == 0,'black','white')) }" onclick="{!c.handleLocationClick}">
+        <div class="{!'content cChessBoardLocation ' + if(!empty(v.location.piece),v.location.piece.Piece_Color__c+v.location.piece.Type__c,'')}">
+        	
+        </div>
+    </div>
+
+</aura:component>

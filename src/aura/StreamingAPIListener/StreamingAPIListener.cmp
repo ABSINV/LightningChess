@@ -1,0 +1,12 @@
+<aura:component controller='StreamingAPIController'>
+    <!-- Loading additional scripts-->
+	<ltng:require scripts="/resource/jquery,/resource/cometd,/resource/json2,/resource/jquerycometd" afterScriptsLoaded="{!c.setupStreaming}" />
+	<!-- Declare the component will throw following events-->
+    <aura:registerEvent name="StreamingEvent" type="c:StreamingEvent"/>
+    <!-- event to close streaming connection on closure -->
+    <aura:handler name="destroy" value="{!this}" action="{!c.closeConnections}"/>
+
+	<!-- Set attributes-->
+    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="listeners" type="String"/>
+</aura:component>

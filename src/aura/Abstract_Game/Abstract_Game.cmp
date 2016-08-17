@@ -1,0 +1,75 @@
+<aura:component abstract="true">
+	<!-- Abstract attributes -->
+	<aura:attribute type="Object" name="activeGame"></aura:attribute>
+    <aura:attribute type="String" name="currentUser" ></aura:attribute>
+
+    <aura:attribute type="String" name="opponent"></aura:attribute>
+    <aura:attribute type="String" name="player"></aura:attribute>
+    <aura:attribute type="Boolean" name="myMove" default="false"></aura:attribute>
+    <aura:attribute type="String" name="winner"></aura:attribute>
+
+
+	<div class='slds-grid slds-grid--vertical-stretch' style="width:100%;">
+        <div class="slds-col slds-large-size--9-of-12 slds-medium-size--4-of-6 slds-small-size--4-of-6">
+            <aura:if isTrue="{! empty(v.activeGame)}">
+            	<span>No active game</span>
+            </aura:if>
+            <!-- This expression adds the body of the sub component to this super component -->
+            {!v.body}
+
+        </div>
+        <div class="slds-col slds-large-size--3-of-12 slds-medium-size--4-of-6 slds-small-size--4-of-6" style="position:relative;">
+            <aura:if isTrue="{! !empty(v.activeGame)}">
+                <div class="top-panel" style="padding-left:10px;">
+                    <ul class="slds-list--vertical slds-has-cards--space has-selections">
+                        <li class="{! 'slds-list__item' + (!v.myMove ? ' slds-theme--inverse' :'')}">
+                            <div class="slds-tile slds-tile--board">
+                                <p class="slds-tile__title slds-truncate">
+                                  <p class="slds-text-heading--medium">Opponent</p>
+                                </p>
+                                <div class="slds-tile__detail">
+                                    <p class="slds-truncate">
+                                       {! v.opponent}
+                                    </p>
+                                    <aura:if isTrue="{! !v.myMove}">
+                                         <p class="slds-truncate">Making his move</p>
+                                        <aura:set attribute="else">
+                                            <p class="slds-truncate">Waiting for you</p>
+                                        </aura:set>
+                                    </aura:if>
+                                   
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-panel" style="width:100%;padding-left:10px;">
+                    <ul class="slds-list--vertical slds-has-cards--space has-selections">
+                        <li class="{! 'slds-list__item' + (v.myMove ? ' slds-theme--inverse' :'')}">
+                            <div class="slds-tile slds-tile--board">
+                                <p class="slds-tile__title slds-truncate">
+                                  <p class="slds-text-heading--medium">You</p>
+                                </p>
+                                <div class="slds-tile__detail">
+                                    <p class="slds-truncate">
+                                       {!v.player}
+                                    </p>
+                                    <aura:if isTrue="{! v.myMove}">
+                                        <p class="slds-truncate">It's your move</p>
+                                        <aura:set attribute="else">
+                                            <p class="slds-truncate">Waiting for opponent</p>
+                                        </aura:set>
+                                    </aura:if>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>      
+            </aura:if>
+        </div>
+
+    </div>
+
+</aura:component>

@@ -1,0 +1,37 @@
+ <aura:component >
+	<aura:attribute name="overlayActive" type="Boolean" default="false"></aura:attribute>
+	<aura:attribute name="payload" type="Object" access="private"></aura:attribute>
+	<aura:attribute name="color" type="String" default="White" access="private"></aura:attribute>
+
+
+    <aura:handler event="c:Promotion_Selection" action="{!c.handlePromotion}"/>
+
+    <aura:registerEvent name="Promotion_Complete" type="c:Promotion_Complete"/>
+
+
+	<div class="{! v.overlayActive ? '' : 'slds-hide'}"  >
+		<div tabindex="0" class="slds-modal slds-fade-in-open slds-modal--medium" aria-hidden="false" role="dialog" onkeydown="{!c.closeEscModal}">
+			<div class="slds-modal__container" >
+				<div class="slds-modal__header">
+					<button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.closeModal}">
+						<c:svg  class="slds-button__icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
+						</c:svg>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 class="slds-text-heading--medium">Promotion</h2>
+				</div>
+				<div class="slds-modal__content slds-p-around--medium" aura:id="overlayContent">
+					<div class="slds-grid slds-grid--align-space">
+						<div class="slds-col promotion WhiteQueen" data-type="Queen" onclick="{!c.selectPromotion}"></div>
+						<div class="slds-col promotion WhiteRook" data-type="Rook" onclick="{!c.selectPromotion}"></div>
+						<div class="slds-col promotion WhiteBishop" data-type="Bishop" onclick="{!c.selectPromotion}"></div>
+						<div class="slds-col promotion WhiteKnight" data-type="Knight" onclick="{!c.selectPromotion}"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slds-backdrop slds-backdrop--open">	
+		</div>
+	</div>
+
+</aura:component>

@@ -1,0 +1,9 @@
+.THIS .status-available .status-color{
+	fill:lime !important;
+}
+
+.THIS .status-color{
+	fill:red !important;
+}
+
+

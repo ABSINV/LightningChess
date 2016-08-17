@@ -1,0 +1,50 @@
+<aura:component controller="LoggedInUserController">
+	<aura:attribute name="players" type="Array"></aura:attribute>
+    <aura:attribute name="sessionId" type="String"></aura:attribute>
+    <aura:attribute name="currentUser" type="String"></aura:attribute>
+    <aura:attribute name="challenge" type="Object"></aura:attribute>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="destroy" value="{!this}" action="{!c.handleClose}" />
+    <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}"/>
+
+    
+    <div class="playerList">
+    	<aura:iteration var="user" items="{!v.players}">
+            <div class="{! 'slds-media slds-media--center ' + ((user.Player_Status__c == 'Available') ? 'status-available' : '')}">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container" >
+                        <c:Svg class="slds-icon slds-icon--small slds-icon-text-default status-color" xlinkHref="/resource/SLDS0121/assets/icons/utility-sprite/svg/symbols.svg#record">
+                        </c:Svg>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <span class="username">{!user.Name}</span>
+                    <div style="float:right;" class="slds-float-right">
+                        <aura:if isTrue="{!user.Player_Status__c == 'Available'}">
+                            <button class="slds-button slds-button--brand" data-user="{!user.User__c}" label="Challenge" onclick="{!c.challengeUser}">Challenge</button>
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+
+     
+   
+    <!-- <aura:if isTrue="{! (!empty(v.challenge) &amp;&amp; v.challenge.isChallenge == true)}">
+        <div class='challengedPanel'>
+            You have been challenged by {!v.challenge.name}!
+            <ui:button label="Accept" press="{!c.acceptChallenge}"></ui:button>
+            <ui:button label="Reject" press="{!c.declineChallenge}"></ui:button>
+
+        </div>
+    </aura:if>
+    <aura:if isTrue="{! !empty(v.challenge) &amp;&amp; !v.challenge.isChallenge}">
+        <div class='challengedPanel'>
+            You have challenged {!v.challenge.name}!
+            <ui:button label="Cancel" press="{!c.declineChallenge}"></ui:button>
+        </div>
+    </aura:if> -->
+   
+</aura:component>

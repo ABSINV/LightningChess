@@ -1,0 +1,33 @@
+<aura:component controller="LoggedInUserController">
+    <aura:attribute name="currentUser" type="String"></aura:attribute>
+    <aura:attribute name="challenges" type="Object[]"></aura:attribute>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}" />
+
+    <aura:if isTrue="{! (v.challenges.length == 0)}">
+    	<div>No active challenges</div>
+    	
+    </aura:if>
+
+    <aura:iteration var="challenge" items="{!v.challenges}">
+        <div class="slds-media slds-media--center">
+        		<div class="slds-media__figure">
+                    <button class="slds-button slds-button--icon-inverse" onclick="{!c.acceptChallenge}" id="{!challenge.Id}">
+                        <c:svg class="slds-button__icon slds-button__icon--large accept-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#approval">
+                        </c:svg>
+                        <span class="slds-assistive-text">Accept</span>
+                    </button>
+                    <button class="slds-button slds-button--icon-inverse" id="{!challenge.Id}" onclick="{!c.rejectChallenge}" >
+                        <c:svg class="slds-button__icon slds-button__icon--large reject-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
+                        </c:svg>
+                        <span class="slds-assistive-text">Reject</span>
+                    </button>
+				</div>
+	    		<div class="slds-media__body">
+	    			<p>You have been challenged by {!challenge.Challenging_User_Name__c}</p>
+	    		</div>
+	    	</div>
+    </aura:iteration>
+</aura:component>

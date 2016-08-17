@@ -1,0 +1,17 @@
+.THIS > .spacer {
+	height: 2%;
+	min-height: 15px;
+	max-height: 50px;
+}
+
+.THIS .right-side-panel{
+	min-height: 400px;
+}
+
+.THIS .right-panel-tab{
+	min-height: 400px;
+}
+
+.THIS .slds-tabs--scoped__item.slds-active a{
+	background-color:#FDFDFD;
+}
