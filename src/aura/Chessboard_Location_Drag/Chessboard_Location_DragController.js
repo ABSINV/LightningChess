@@ -8,10 +8,28 @@
     
     handleLocationClick: function(cmp,event,helper)
     {
-        var location = cmp.get('v.location');
-        var e = cmp.getEvent('click');
-        e.setParams({'location':location});
-        e.fire();   
+        if(!cmp.get('v.isSelected'))
+            helper.notifyAsSelected(cmp);
+        else
+            helper.notifyAsTarget(cmp);
+    },
+
+    handleDragStart : function(cmp,event,helper)
+    {
+        helper.notifyAsSelected(cmp);
+    },
+
+    handleDrop : function(cmp,event,helper)
+    {
+        helper.notifyAsTarget(cmp);
+    },
+
+    handleDragOver : function(cmp,event,helper)
+    {
+        if(cmp.get('v.isSelected'))
+        {
+            event.preventDefault();
+        }
     },
     
     handleMoveEvent: function(cmp,event,helper)
@@ -74,5 +92,6 @@
         }
         cmp.set('v.location',location);
 
-    }
+    },
+
 })

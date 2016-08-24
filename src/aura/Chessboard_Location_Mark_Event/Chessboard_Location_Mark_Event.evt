@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION">
+	
+	<aura:attribute type="Integer[]" name="coordinates" description="An array of coordinates that have to be marked as selected. coordinates concatenate x and y coordinate into one number"></aura:attribute>
+
+</aura:event>

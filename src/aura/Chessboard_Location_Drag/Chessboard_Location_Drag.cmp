@@ -10,15 +10,17 @@
 	<!-- Component handler -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:Chessboard_Location_Move_Event" action="{!c.handleMoveEvent}"/>
-    <aura:handler event="c:Chessboard_Location_Selection_Event" action="{!c.handleSelectionEvent}"/>
+    <aura:handler event="c:Chessboard_Location_Mark_Event" action="{!c.handleSelectionEvent}"/>
 
     
     <!-- Component events -->
-    <aura:registerEvent name="click" type="c:ChessboardLocationClicked"/>
+    <aura:registerEvent name="select" type="c:Chessboard_Location_Selection_Event"/>
+    <aura:registerEvent name="target" type="c:Chessboard_Location_Target_Event"/>
+
 
     <!-- body -->
     <div aura:id="location_container" class="{!'ChessBoardLocation ' + (((v.location.x + v.location.y) % 2) == 0 ?'black':'white') }" onclick="{!c.handleLocationClick}">
-        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}">
+        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}" draggable="true" ondragstart='{!c.handleDragStart}' ondrop="{!c.handleDrop}" ondragover="{!c.handleDragOver}">
         	
         </div>
     </div>

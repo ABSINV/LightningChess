@@ -1,0 +1,5 @@
+<aura:event type="Component">
+	
+	<aura:attribute name="location" type="Object"></aura:attribute>
+
+</aura:event>

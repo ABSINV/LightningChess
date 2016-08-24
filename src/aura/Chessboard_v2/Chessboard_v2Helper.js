@@ -102,14 +102,14 @@
                     var chesspiece = r.chesspiece;
                     var targetPiece = r.targetPiece;
                     //Inform the location about the change.
-                    var e = $A.get('e.c:LocationAction');
+                    var e = $A.get('e.c:Chessboard_Location_Move_Event');
                     e.setParams({
-                        'payload':{
+                        
                             'move':this.transposeMove(move,cmp),
                             'chesspiece':this.transposeChessPiece(chesspiece,cmp),
                             'targetPiece':this.transposeChessPiece(targetPiece,cmp)
-                        },
-                        'actionType':'newMove'
+                        
+                        
                     });
                     e.fire();
                     

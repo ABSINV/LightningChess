@@ -52,7 +52,7 @@
     </div>
 
    
-    <c:StreamingAPIListener listeners="NewChessBoard,NewChessboardMove,LoggedInPlayer,UserGameChallenge">
+    <c:StreamingAPIListener listeners="NewChessBoard,LoggedInPlayer,UserGameChallenge">
 
     </c:StreamingAPIListener>
 </aura:component>
