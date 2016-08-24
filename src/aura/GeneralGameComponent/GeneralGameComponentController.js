@@ -23,7 +23,7 @@
 	{
 		switch(event.getParam('eventType')){
             case 'NewChessBoard':
-                return helper.createGame("c:Chessboard_v2",cmp,event);
+                return helper.createGame("c:Chessboard",cmp,event);
         }
 		
 	}
