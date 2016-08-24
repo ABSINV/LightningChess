@@ -34,9 +34,7 @@
     
     handleMoveEvent: function(cmp,event,helper)
     {
-        var location = cmp.get('v.location');
-        var payload = event.getParam('payload')
-        
+        var location = cmp.get('v.location');        
 
         var move = event.getParam('move');
         var chesspiece = event.getParam('chesspiece');
