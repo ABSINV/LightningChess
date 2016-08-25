@@ -1,0 +1,8 @@
+<aura:component >
+	
+    <aura:attribute name="demo" type="String" default="Hello from attribute!"></aura:attribute>
+    
+    {!v.demo}
+    
+    <ui:button press="{!c.click}" label="click"></ui:button>
+</aura:component>

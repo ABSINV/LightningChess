@@ -1,25 +1,28 @@
 <aura:component >
-	<!-- Component attributes -->
-	<aura:attribute name="location" type="Object"></aura:attribute>
-	
-	<aura:attribute name="isSelected" type="Boolean" access="private"></aura:attribute>
-	<aura:attribute name="hasPieceAssigned" type="Boolean" access="private"></aura:attribute>
-	<aura:attribute name="piece" type="Chesspiece__c" access="private"></aura:attribute>
-    <aura:attribute name="locationHistory" type="Chesspiece__c[]" access="private" description="A list of pieces that have been assigned to this location."></aura:attribute>
+    <!-- Component attributes -->
+    <aura:attribute name="location" type="Object"></aura:attribute>
+    
+    <aura:attribute name="isSelected" type="Boolean" access="private" description="Flag to define if the location is selected"></aura:attribute>
+    <aura:attribute name="isTarget" type="Boolean" access="private" description="Flag to define if the location was a selected as a target"></aura:attribute>
 
-	<!-- Component handler -->
+    <aura:attribute name="piece" type="ChessPiece__c" access="private" description="The piece that is currently assigned to this location"></aura:attribute>
+    <aura:attribute name="locationHistory" type="ChessPiece__c[]" access="private" description="A list of pieces that have been assigned to this location."></aura:attribute>
+
+    <!-- Component handler -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:Chessboard_Location_Move_Event" action="{!c.handleMoveEvent}"/>
-    <aura:handler event="c:Chessboard_Location_Selection_Event" action="{!c.handleSelectionEvent}"/>
+    <aura:handler event="c:Chessboard_Location_Mark_Event" action="{!c.handleSelectionEvent}"/>
 
     
     <!-- Component events -->
-    <aura:registerEvent name="click" type="c:ChessboardLocationClicked"/>
+    <aura:registerEvent name="select" type="c:Chessboard_Location_Selection_Event"/>
+    <aura:registerEvent name="target" type="c:Chessboard_Location_Target_Event"/>
+
 
     <!-- body -->
-    <div aura:id="location_container" class="{!'ChessBoardLocation ' + (((v.location.x + v.location.y) % 2) == 0 ?'black':'white') }" onclick="{!c.handleLocationClick}">
-        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}">
-        	
+    <div aura:id="location_container" class="ChessBoardLocation" onclick="{!c.handleLocationClick}">
+        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}" draggable="true" ondragstart="{!c.handleDragStart}" ondrop="{!c.handleDrop}" ondragover="{!c.handleDragOver}">
+            
         </div>
     </div>
 

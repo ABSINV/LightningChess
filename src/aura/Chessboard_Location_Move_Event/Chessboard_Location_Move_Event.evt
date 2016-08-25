@@ -1,7 +1,7 @@
 <aura:event type="APPLICATION">
 
 	<aura:attribute name="move" type="ChessBoardMove__c" description="The move object for the locations to handle"></aura:attribute>
-	<aura:attribute name="targetPiece" type="Chesspiece__c"></aura:attribute>
-	<aura:attribute name="chesspiece" type="Chesspiece__c"></aura:attribute>
+	<aura:attribute name="targetPiece" type="ChessPiece__c"></aura:attribute>
+	<aura:attribute name="chesspiece" type="ChessPiece__c"></aura:attribute>
 
 </aura:event>

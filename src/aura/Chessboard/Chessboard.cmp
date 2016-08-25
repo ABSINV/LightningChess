@@ -1,7 +1,8 @@
 <aura:component controller='ChessGameController' extends="c:Abstract_Game" >
     <!-- Set Attributes -->
     <aura:attribute type="Array" name="locations" access="private"></aura:attribute>
-    <aura:attribute type="Chesspiece__c" name="selectedPiece" access="private"></aura:attribute>
+    <aura:attribute type="ChessPiece__c" name="selectedPiece" access="private"></aura:attribute>
+    <aura:attribute type="String" name="playerColor" access="private"></aura:attribute>
 
     <!-- Set Event Listeners -->
     <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}"/>
@@ -16,7 +17,7 @@
 
     <aura:iteration var="row" items="{!v.locations}">
         <aura:iteration var="location" items="{!row}">
-            <c:Chessboard_Location_Drag location="{!location}" select="{!c.handleLocationSelect}" target="{!c.handleLocationTarget}" />
+            <c:Chessboard_Location location="{!location}" select="{!c.handleLocationSelect}" target="{!c.handleLocationTarget}" />
         </aura:iteration>   
     </aura:iteration>  
 

@@ -1,5 +1,6 @@
 <aura:event type="APPLICATION">
 	
 	<aura:attribute type="Integer[]" name="coordinates" description="An array of coordinates that have to be marked as selected. coordinates concatenate x and y coordinate into one number"></aura:attribute>
+	<aura:attribute type="String" name="type" default="select" description="The type of mark you wish to put on these locations. Can be select (location is marked green) or target (location is marked orange)"></aura:attribute>
 
 </aura:event>

@@ -4,8 +4,8 @@
 	
 	<aura:attribute name="isSelected" type="Boolean" access="private"></aura:attribute>
 	<aura:attribute name="hasPieceAssigned" type="Boolean" access="private"></aura:attribute>
-	<aura:attribute name="piece" type="Chesspiece__c" access="private"></aura:attribute>
-    <aura:attribute name="locationHistory" type="Chesspiece__c[]" access="private" description="A list of pieces that have been assigned to this location."></aura:attribute>
+	<aura:attribute name="piece" type="ChessPiece__c" access="private"></aura:attribute>
+    <aura:attribute name="locationHistory" type="ChessPiece__c[]" access="private" description="A list of pieces that have been assigned to this location."></aura:attribute>
 
 	<!-- Component handler -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

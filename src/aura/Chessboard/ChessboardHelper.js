@@ -3,6 +3,7 @@
         This method creates the default location structure of our board. Later we will assign a piece to each of these locations  
     */
     createBaseBoard: function () {
+        //TODO move this to Apex service for reusability.
         var locations = [];
         var row;
         for(var i = 0; i < 8; i++)
@@ -31,17 +32,18 @@
                 return;
             if(response.getState() == 'SUCCESS')
             {
-                var locations = helper.createBaseBoard();
                 var pieces = response.getReturnValue();
                 var u = cmp.get('v.currentUser');
                 cmp.set('v.activeGame',chessboard);
-                
-                //Put each chess piece on its respective location
-                helper.assignPieces(locations,pieces,cmp);
-                cmp.set('v.locations',locations);
 
+                helper.setPlayerColor(cmp);
                 helper.setPlayers(cmp);
                 helper.setMyMove(cmp);
+
+                //Put each chess piece on its respective location
+                var locations = helper.createBaseBoard();
+                helper.assignPieces(locations,pieces,cmp);
+                cmp.set('v.locations',locations);
             }
             else
             {
@@ -71,12 +73,17 @@
     /**
         Defines if the player used the white or the black pieces.
     */
-    getPlayerColor: function(u,game)
+    setPlayerColor: function(cmp)
     {
+        var game = cmp.get('v.activeGame');
+        var u = cmp.get('v.currentUser');
+        var color;
         if(game.Player_White__c == u)
-            return 'White';
+            color = 'White';
         else
-            return 'Black';
+            color = 'Black';
+
+        cmp.set('v.playerColor',color);
     },
     
     /**
@@ -102,16 +109,19 @@
                     var chesspiece = r.chesspiece;
                     var targetPiece = r.targetPiece;
                     //Inform the location about the change.
+                    var transposedMove = this.transposeMove(move,cmp);
                     var e = $A.get('e.c:Chessboard_Location_Move_Event');
                     e.setParams({
                         
-                            'move':this.transposeMove(move,cmp),
+                            'move':transposedMove,
                             'chesspiece':this.transposeChessPiece(chesspiece,cmp),
                             'targetPiece':this.transposeChessPiece(targetPiece,cmp)
                         
                         
                     });
                     e.fire();
+
+                    helper.markLocations(cmp,[('' + (transposedMove.X_Destination__c) + (transposedMove.Y_Destination__c))],'target');
                     
                     cmp.set('v.activeGame',r.chessboard);
                     if(r.chessboard.Winning_Player__c == cmp.get('v.currentUser'))
@@ -163,6 +173,9 @@
 
         })
         $A.enqueueAction(action);
+
+        helper.markLocations(cmp,[''+(newX) + (newY)],'target');
+
     },
 
     /**
@@ -170,7 +183,7 @@
     */
     transposeCoord: function(x,total,cmp)
     {
-        var color = this.getPlayerColor(cmp.get('v.currentUser'),cmp.get('v.activeGame'))
+        var color = cmp.get('v.playerColor');
         if(color == 'White')
         {
             return total - x;
@@ -441,6 +454,43 @@
 
     inRange : function(x,y){
         return x < 8 && x >= 0 && y < 8 && y >= 0;
+    },
+
+    /**
+        This method will define if it's my turn to play or not.
+    */
+    setMyMove : function(cmp)
+    {
+        var board = cmp.get('v.activeGame');
+        var user = cmp.get('v.currentUser');
+        cmp.set('v.myMove',board.Current_Player__c == cmp.get('v.playerColor'));
+    },
+
+    /**
+        This method sets the player and opponent values of the component. They are purely for displaying purposes.
+    */
+    setPlayers : function(cmp)
+    {
+        var game = cmp.get('v.activeGame');
+        var currentUser = cmp.get('v.currentUser');
+        var playercolor = cmp.get('v.playerColor');
+        if(playercolor == 'White')
+        {
+            cmp.set('v.opponent',game.Black_Name__c);
+            cmp.set('v.player',game.White_Name__c);
+        }
+        else
+        {
+            cmp.set('v.player',game.Black_Name__c);
+            cmp.set('v.opponent',game.White_Name__c);
+        }
+    },
+
+    markLocations : function(cmp,locations,type)
+    {
+        var e = $A.get('e.c:Chessboard_Location_Mark_Event');
+        e.setParams({'coordinates':locations,type:type});
+        e.fire();
     }
     
 })

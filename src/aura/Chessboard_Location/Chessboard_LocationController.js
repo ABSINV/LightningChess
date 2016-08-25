@@ -21,6 +21,22 @@
         else
             helper.notifyAsTarget(cmp);
     },
+
+    handleDragStart : function(cmp,event,helper)
+    {
+        helper.notifyAsSelected(cmp);
+    },
+
+    handleDrop : function(cmp,event,helper)
+    {
+        helper.notifyAsTarget(cmp);
+    },
+
+    handleDragOver : function(cmp,event,helper)
+    {
+        if(cmp.get('v.isSelected'))
+            event.preventDefault();
+    },
     
     /*
         Handles a move event. Based on the provided data on the move object the location will update its state.
@@ -78,19 +94,31 @@
     handleSelectionEvent: function(cmp,event,helper)
     {
         var location = cmp.get('v.location');
-        var coordinates = event.getParam('coordinates')
+        var coordinates = event.getParam('coordinates');
+        var type = event.getParam('type');
         
-        if(coordinates.indexOf(""+location.x+location.y) != -1)
+        var selected = false;
+        var targeted = false;
+        var isInCoordinates = coordinates.indexOf(""+location.x+location.y) != -1
+        if(type == "select")
         {
-            location.selected = true;
-            cmp.set('v.isSelected',true);
+            if(isInCoordinates)
+                selected = true;
+            
+            location.selected = selected;
+            cmp.set('v.isSelected',selected); 
         }
-        else
+        else if(type == "target")
         {
-            location.selected = false;
-            cmp.set('v.isSelected',false);
+            if(isInCoordinates)
+                targeted = true;
 
+            cmp.set('v.isTarget',targeted);
         }
+
+        
+        
+        
         cmp.set('v.location',location);
 
     }

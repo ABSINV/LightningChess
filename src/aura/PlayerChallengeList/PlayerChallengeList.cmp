@@ -15,13 +15,13 @@
         <div class="slds-media slds-media--center">
         		<div class="slds-media__figure">
                     <button class="slds-button slds-button--icon-inverse" onclick="{!c.acceptChallenge}" id="{!challenge.Id}">
-                        <c:svg class="slds-button__icon slds-button__icon--large accept-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#approval">
-                        </c:svg>
+                        <c:Svg class="slds-button__icon slds-button__icon--large accept-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#approval">
+                        </c:Svg>
                         <span class="slds-assistive-text">Accept</span>
                     </button>
                     <button class="slds-button slds-button--icon-inverse" id="{!challenge.Id}" onclick="{!c.rejectChallenge}" >
-                        <c:svg class="slds-button__icon slds-button__icon--large reject-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
-                        </c:svg>
+                        <c:Svg class="slds-button__icon slds-button__icon--large reject-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
+                        </c:Svg>
                         <span class="slds-assistive-text">Reject</span>
                     </button>
 				</div>

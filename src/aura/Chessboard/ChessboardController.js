@@ -1,7 +1,6 @@
 ({  
     doInit : function(cmp,event,helper)
-    {
-        
+    { 
         helper.handleNewChessBoard(cmp,cmp.get('v.activeGame'),helper);
     },
 
@@ -13,77 +12,10 @@
         //The controller expects two different types of streaming events. The first is send when a new chessboard game is created.
         //The second type is when a new chessboard move is created.
         switch(event.getParam('eventType')){
-            // case 'NewChessBoard':
-            //     helper.handleNewChessBoard(component,event.getParam('sObject'),helper);
-            //     break;
             case 'NewChessboardMove':
                 helper.handleNewChessboardMove(component,event.getParam('sObject'),helper);
                 break;
         }
-    },
-    /**
-        Handles events of the type ChessboardLocationClicked. These are thrown by the ChessboardLocation component.
-        The method will check was has to be done with the clicked location.
-        This can be: A new piece is clicked -> display possible destination locations
-                     A destination location has been clicked -> A new move has to be issued
-                     Location is clicked but it's not my turn to play! 
-    */    
-    handleLocationClick: function(cmp,e,h)
-    {
-        var location = e.getParam('location');
-        var game = cmp.get('v.activeGame');
-        var u = cmp.get('v.currentUser');
-        var myMove = cmp.get('v.myMove');
-        var color = h.getPlayerColor(u,game);
-        if(myMove)
-        {
-            //The clicked location has a piece assigned and it's my piece. We will obtain all possible destination locations.
-            if(!$A.util.isEmpty(location.piece) && location.piece.Piece_Color__c == color && (location.specialAction != 'Castling' || !location.selected))
-            {
-                cmp.set('v.selectedPiece',location.piece);
-                var possibleLocations = h.getPossibleLocations(location,cmp.get('v.locations'),color,game.Current_Turn__c);
-                //Send a notification event to all locations. Each location will decide what it has to do based on the parameters passed.
-                var e = $A.get('e.c:Chessboard_Location_Mark_Event');
-                e.setParams({'coordinates':possibleLocations});
-                e.fire();
-
-            }
-           
-            //The location that was clicked was highlighted as a possibile destination from a previous click event. We will issue a new move here.
-            else if(location.selected)
-            {
-                                    
-
-                var selectedPiece = cmp.get('v.selectedPiece');
-                var locations = cmp.get('v.locations');
-
-                if(selectedPiece.Type__c == 'Pawn' && location.x == 0)
-                {
-                    var payload = {
-                        location: location,
-                        piece: selectedPiece
-                    }
-                    var promotionEvent = $A.get('e.c:Promotion_Selection');
-                    promotionEvent.setParams({
-                        payload : payload,
-                        color: color
-                    });
-                    promotionEvent.fire();
-                }
-                else
-                {
-                    h.sendNewMove(cmp,h,selectedPiece,location.x,location.y,location.specialAction);
-
-                }
-
-                //Send a location event with an empty array to untag the destination locations.
-                var e = $A.get('e.c:Chessboard_Location_Mark_Event');
-                e.setParams({'coordinates':[]});
-                e.fire();
-                cmp.set('v.selectedPiece', null);
-            }
-        }   
-            
     },
 
     handleLocationSelect : function(cmp,event,helper)
@@ -93,8 +25,7 @@
 
         var location = event.getParam('location');
         var game = cmp.get('v.activeGame');
-        var u = cmp.get('v.currentUser');
-        var color = helper.getPlayerColor(u,game);
+        var color = cmp.get('v.playerColor');
         
         //The clicked location has a piece assigned and it's my piece. We will obtain all possible destination locations.
         if(!$A.util.isEmpty(location.piece) && location.piece.Piece_Color__c == color && (location.specialAction != 'Castling' || !location.selected))
@@ -102,9 +33,8 @@
             cmp.set('v.selectedPiece',location.piece);
             var possibleLocations = helper.getPossibleLocations(location,cmp.get('v.locations'),color,game.Current_Turn__c);
             //Send a notification event to all locations. Each location will decide what it has to do based on the parameters passed.
-            var e = $A.get('e.c:Chessboard_Location_Mark_Event');
-            e.setParams({'coordinates':possibleLocations});
-            e.fire();
+            helper.markLocations(cmp,possibleLocations,'select');
+
 
         }
         
@@ -119,9 +49,7 @@
         var selectedPiece = cmp.get('v.selectedPiece');
         var locations = cmp.get('v.locations');
         var location = event.getParam('location');
-        var game = cmp.get('v.activeGame');
-        var u = cmp.get('v.currentUser');
-        var color = helper.getPlayerColor(u,game);
+        var color = cmp.get('v.playerColor');
 
         //First check if it is pawn that reached the end, ask for promotion piece first.
         if(selectedPiece.Type__c == 'Pawn' && location.x == 0)
@@ -143,9 +71,7 @@
         }
 
         //Send a location event with an empty array to untag the destination locations.
-        var e = $A.get('e.c:Chessboard_Location_Mark_Event');
-        e.setParams({'coordinates':[]});
-        e.fire();
+        helper.markLocations(cmp,[],'select');
         cmp.set('v.selectedPiece', null);
 
 
@@ -162,6 +88,73 @@
 
 
     }
+
+    /**
+        Handles events of the type ChessboardLocationClicked. These are thrown by the ChessboardLocation component.
+        The method will check was has to be done with the clicked location.
+        This can be: A new piece is clicked -> display possible destination locations
+                     A destination location has been clicked -> A new move has to be issued
+                     Location is clicked but it's not my turn to play! 
+    */    
+    //This event was split up in two this function is not longer needed
+    // handleLocationClick: function(cmp,e,h)
+    // {
+    //     var location = e.getParam('location');
+    //     var game = cmp.get('v.activeGame');
+    //     var u = cmp.get('v.currentUser');
+    //     var myMove = cmp.get('v.myMove');
+    //     var color = h.getPlayerColor(u,game);
+    //     if(myMove)
+    //     {
+    //         //The clicked location has a piece assigned and it's my piece. We will obtain all possible destination locations.
+    //         if(!$A.util.isEmpty(location.piece) && location.piece.Piece_Color__c == color && (location.specialAction != 'Castling' || !location.selected))
+    //         {
+    //             cmp.set('v.selectedPiece',location.piece);
+    //             var possibleLocations = h.getPossibleLocations(location,cmp.get('v.locations'),color,game.Current_Turn__c);
+    //             //Send a notification event to all locations. Each location will decide what it has to do based on the parameters passed.
+    //             var e = $A.get('e.c:Chessboard_Location_Mark_Event');
+    //             e.setParams({'coordinates':possibleLocations});
+    //             e.fire();
+
+    //         }
+           
+    //         //The location that was clicked was highlighted as a possibile destination from a previous click event. We will issue a new move here.
+    //         else if(location.selected)
+    //         {
+                                    
+
+    //             var selectedPiece = cmp.get('v.selectedPiece');
+    //             var locations = cmp.get('v.locations');
+
+    //             if(selectedPiece.Type__c == 'Pawn' && location.x == 0)
+    //             {
+    //                 var payload = {
+    //                     location: location,
+    //                     piece: selectedPiece
+    //                 }
+    //                 var promotionEvent = $A.get('e.c:Promotion_Selection');
+    //                 promotionEvent.setParams({
+    //                     payload : payload,
+    //                     color: color
+    //                 });
+    //                 promotionEvent.fire();
+    //             }
+    //             else
+    //             {
+    //                 h.sendNewMove(cmp,h,selectedPiece,location.x,location.y,location.specialAction);
+
+    //             }
+
+    //             //Send a location event with an empty array to untag the destination locations.
+    //             var e = $A.get('e.c:Chessboard_Location_Mark_Event');
+    //             e.setParams({'coordinates':[]});
+    //             e.fire();
+    //             cmp.set('v.selectedPiece', null);
+    //         }
+    //     }   
+            
+    // },
+
     
     
 

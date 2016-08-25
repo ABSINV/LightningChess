@@ -154,8 +154,8 @@ public class ChessGameController {
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Rook',X_Coord__c=0,Y_Coord__c=0));
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Knight',X_Coord__c=0,Y_Coord__c=1));        
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Bishop',X_Coord__c=0,Y_Coord__c=2));       
-        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Queen',X_Coord__c=0,Y_Coord__c=3));      
-        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'King',X_Coord__c=0,Y_Coord__c=4));      
+        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Queen',X_Coord__c=0,Y_Coord__c=4));      
+        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'King',X_Coord__c=0,Y_Coord__c=3));      
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Bishop',X_Coord__c=0,Y_Coord__c=5));      
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Knight',X_Coord__c=0,Y_Coord__c=6));      
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'White',Type__c = 'Rook',X_Coord__c=0,Y_Coord__c=7));     
@@ -170,8 +170,8 @@ public class ChessGameController {
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Rook',X_Coord__c=7,Y_Coord__c=0));
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Knight',X_Coord__c=7,Y_Coord__c=1));        
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Bishop',X_Coord__c=7,Y_Coord__c=2));       
-        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Queen',X_Coord__c=7,Y_Coord__c=3));      
-        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'King',X_Coord__c=7,Y_Coord__c=4));      
+        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Queen',X_Coord__c=7,Y_Coord__c=4));      
+        pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'King',X_Coord__c=7,Y_Coord__c=3));      
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Bishop',X_Coord__c=7,Y_Coord__c=5));      
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Knight',X_Coord__c=7,Y_Coord__c=6));      
         pieces.add(new ChessPiece__c(ChessBoard__c=board,Piece_Color__c = 'Black',Type__c = 'Rook',X_Coord__c=7,Y_Coord__c=7));     

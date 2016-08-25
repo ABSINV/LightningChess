@@ -3,8 +3,11 @@
 	<aura:attribute type="Object" name="activeGame"></aura:attribute>
     <aura:attribute type="String" name="currentUser" ></aura:attribute>
 
+    <aura:attribute type="String" name="currentPlayer" description="The id for the player that is currently at play"></aura:attribute>
+
     <aura:attribute type="String" name="opponent"></aura:attribute>
     <aura:attribute type="String" name="player"></aura:attribute>
+
     <aura:attribute type="Boolean" name="myMove" default="false"></aura:attribute>
     <aura:attribute type="String" name="winner"></aura:attribute>
 

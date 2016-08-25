@@ -27,7 +27,10 @@
 	bottom: 0;
 	right: 0;
 }
-
+.THIS.targeted{
+  background-color:orange !important;
+  
+}
 .THIS.selected{
   background-color:lime !important;
   

@@ -1,4 +1,4 @@
- <aura:component >
+<aura:component >
 	<aura:attribute name="overlayActive" type="Boolean" default="false"></aura:attribute>
 	<aura:attribute name="payload" type="Object" access="private"></aura:attribute>
 	<aura:attribute name="color" type="String" default="White" access="private"></aura:attribute>
@@ -14,8 +14,8 @@
 			<div class="slds-modal__container" >
 				<div class="slds-modal__header">
 					<button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.closeModal}">
-						<c:svg  class="slds-button__icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
-						</c:svg>
+						<c:Svg class="slds-button__icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
+						</c:Svg>
 						<span class="slds-assistive-text">Close</span>
 					</button>
 					<h2 class="slds-text-heading--medium">Promotion</h2>
