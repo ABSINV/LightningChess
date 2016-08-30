@@ -97,6 +97,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Current_User_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Current User Id</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ChessBoards3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Game_Status__c</fullName>
         <externalId>false</externalId>
         <label>Game Status</label>

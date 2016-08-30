@@ -22,29 +22,6 @@
         }
     },
     
-    acceptChallenge: function(component,event,helper)
-    {
-        var challenge = component.get('v.challenge');
-        var action = component.get('c.handleChallenge');
-        action.setParams({status:true});
-        action.setCallback(this,function(response){
-            component.set('v.challenge',null);
-        });
-        $A.enqueueAction(action);
-    },
-    
-    declineChallenge: function(component,event,helper)
-    {
-        var challenge = component.get('v.challenge');
-        var action = component.get('c.handleChallenge');
-        action.setParams({status:false});
-        action.setCallback(this,function(response){
-            component.set('v.challenge',null);
-
-        });
-        $A.enqueueAction(action);
-    },
-
     challengeUser : function(component, event, helper) {
         debugger;
         var target = event.currentTarget;

@@ -15,3 +15,7 @@
 .THIS .slds-tabs--scoped__item.slds-active a{
 	background-color:#FDFDFD;
 }
+
+.THIS .my-tab{
+    height:100%;
+}

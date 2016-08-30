@@ -9,8 +9,7 @@
     */
     handleStreamingEvent: function(component,event,helper){
         
-        //The controller expects two different types of streaming events. The first is send when a new chessboard game is created.
-        //The second type is when a new chessboard move is created.
+        //Check if the received event is related to a new chessboardmove
         switch(event.getParam('eventType')){
             case 'NewChessboardMove':
                 helper.handleNewChessboardMove(component,event.getParam('sObject'),helper);
@@ -18,8 +17,13 @@
         }
     },
 
+    /*
+        Handles the select event fire by a location
+        Method checks if the selection is valid, if so it will calculate possible moves that can be taken based on the selected piece.
+    */
     handleLocationSelect : function(cmp,event,helper)
     {
+//      Not my turn to play
         if(!cmp.get('v.myMove'))
             return;
 
@@ -39,7 +43,10 @@
         }
         
     },
+    /*
+        Method that handles the target event fired by a location.
 
+    */
     handleLocationTarget : function(cmp,event,helper)
     {
         if(!cmp.get('v.myMove')){
@@ -67,6 +74,7 @@
         }
         else
         {
+            //Create a new move on the server.
             helper.sendNewMove(cmp,helper,selectedPiece,location.x,location.y,location.specialAction);
         }
 

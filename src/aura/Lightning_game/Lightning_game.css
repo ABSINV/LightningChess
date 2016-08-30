@@ -1,6 +1,6 @@
 .THIS.chessbackground {
 	background-image: url("/resource/1454862894000/chessbackground");
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	height:100%;
 }

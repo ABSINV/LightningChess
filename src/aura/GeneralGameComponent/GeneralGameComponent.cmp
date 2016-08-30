@@ -43,10 +43,7 @@
 	            <div aura:id="challenge-tab" class="slds-tabs--scoped__content slds-hide right-panel-tab" role="tabpanel" aria-labelledby="tab-scoped-2__item" style="background-color:#FDFDFD;position: relative;">
                     <c:PlayerChallengeList currentUser="{!v.currentUser}" challenges="{!v.challenges}"></c:PlayerChallengeList>
 	            </div>
-
-                <div style="width:100%;position:absolute;bottom:0; text-align:center">
-                    <img src="/resource/absilightning" style="width:80%"></img>
-                </div>
+                
             </div>
         </div>
     </div>

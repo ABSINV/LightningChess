@@ -1,3 +1,6 @@
+/*
+* Class that controls the list of logged in users
+* */
 public class LoggedInUserController {
 
 	@AuraEnabled
@@ -9,7 +12,7 @@ public class LoggedInUserController {
 			lu.Status__c = 'Available';
 			lu.Last_Seen__c = Datetime.now();
 			update lu;
-		} catch(Exception e) {
+		} catch(Exception e) { 
 			lu = new LoggedInPlayer__c();
 			lu.User__c = UserInfo.getUserId();
 			lu.Name = UserInfo.getName();

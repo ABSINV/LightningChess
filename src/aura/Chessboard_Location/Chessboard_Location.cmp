@@ -21,7 +21,7 @@
 
     <!-- body -->
     <div aura:id="location_container" class="ChessBoardLocation" onclick="{!c.handleLocationClick}">
-        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}" draggable="true" ondragstart="{!c.handleDragStart}" ondrop="{!c.handleDrop}" ondragover="{!c.handleDragOver}">
+        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}">
             
         </div>
     </div>

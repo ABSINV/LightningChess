@@ -1,37 +1,64 @@
 <aura:component controller="LoggedInUserController">
-	<aura:attribute name="players" type="Array"></aura:attribute>
+    <aura:attribute name="players" type="Array"></aura:attribute>
     <aura:attribute name="sessionId" type="String"></aura:attribute>
     <aura:attribute name="currentUser" type="String"></aura:attribute>
     <aura:attribute name="challenge" type="Object"></aura:attribute>
 
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:handler name="destroy" value="{!this}" action="{!c.handleClose}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="destroy" value="{!this}" action="{!c.handleClose}"/>
     <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}"/>
 
-    
+
     <div class="playerList">
-    	<aura:iteration var="user" items="{!v.players}">
-            <div class="{! 'slds-media slds-media--center ' + ((user.Player_Status__c == 'Available') ? 'status-available' : '')}">
-                <div class="slds-media__figure">
-                    <span class="slds-icon_container" >
-                        <c:Svg class="slds-icon slds-icon--small slds-icon-text-default status-color" xlinkHref="/resource/SLDS0121/assets/icons/utility-sprite/svg/symbols.svg#record">
-                        </c:Svg>
-                    </span>
-                </div>
-                <div class="slds-media__body">
-                    <span class="username">{!user.Name}</span>
-                    <div style="float:right;" class="slds-float-right">
-                        <aura:if isTrue="{!user.Player_Status__c == 'Available'}">
-                            <button class="slds-button slds-button--brand" data-user="{!user.User__c}" label="Challenge" onclick="{!c.challengeUser}">Challenge</button>
-                        </aura:if>
+        <!--<aura:iteration var="user" items="{!v.players}">-->
+        <!--<div class="{! 'slds-media slds-media&#45;&#45;center ' + ((user.Player_Status__c == 'Available') ? 'status-available' : '')}">-->
+        <!--<div class="slds-media__figure">-->
+        <!--<span class="slds-icon_container" >-->
+        <!--<c:Svg class="slds-icon slds-icon&#45;&#45;small slds-icon-text-default status-color" xlinkHref="/resource/SLDS0121/assets/icons/utility-sprite/svg/symbols.svg#record">-->
+        <!--</c:Svg>-->
+        <!--</span>-->
+        <!--</div>-->
+        <!--<div class="slds-media__body">-->
+        <!--<span class="username">{!user.Name}</span>-->
+        <!--<div style="float:right;" class="slds-float-right">-->
+        <!--<aura:if isTrue="{!user.Player_Status__c == 'Available'}">-->
+        <!--<button class="slds-button slds-button&#45;&#45;brand" data-user="{!user.User__c}" label="Challenge" onclick="{!c.challengeUser}">Challenge</button>-->
+        <!--</aura:if>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</aura:iteration>-->
+
+        <ul class="slds-has-dividers--around-space">
+            <aura:iteration var="user" items="{!v.players}">
+                <li class="slds-item player-card">
+                    <div class="slds-tile slds-tile--board">
+                        <button style="float:right;" class="slds-button slds-button--brand" data-user="{!user.User__c}" label="Challenge" onclick="{!c.challengeUser}">Challenge</button>
+
+                        <div class="{! 'slds-media slds-media--center ' + ((user.Player_Status__c == 'Available') ? 'status-available' : '')}">
+                            <div class="slds-media__figure">
+                                <c:Svg class="slds-icon slds-icon--small slds-icon-text-default status-color" xlinkHref="/resource/SLDS23/assets/icons/action-sprite/svg/symbols.svg#user">
+                                    </c:Svg>
+                            </div>
+                            <div class="slds-media__body">
+                                <div class="slds-grid slds-grid--align-spread">
+                                    <h3 class="slds-truncate"> {!user.Name} </h3>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="slds-tile__detail slds-text-body--small">
+
+                        </div>
                     </div>
-                </div>
-            </div>
-        </aura:iteration>
+                </li>
+            </aura:iteration>
+        </ul>
+
     </div>
 
-     
-   
+
     <!-- <aura:if isTrue="{! (!empty(v.challenge) &amp;&amp; v.challenge.isChallenge == true)}">
         <div class='challengedPanel'>
             You have been challenged by {!v.challenge.name}!
@@ -46,5 +73,5 @@
             <ui:button label="Cancel" press="{!c.declineChallenge}"></ui:button>
         </div>
     </aura:if> -->
-   
+
 </aura:component>

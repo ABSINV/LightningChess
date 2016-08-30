@@ -2,8 +2,8 @@
     /**
         This method creates the default location structure of our board. Later we will assign a piece to each of these locations  
     */
-    createBaseBoard: function () {
-        //TODO move this to Apex service for reusability.
+    createBaseBoard: function ()
+    {
         var locations = [];
         var row;
         for(var i = 0; i < 8; i++)
@@ -16,14 +16,13 @@
             }
         }
         return locations;
-        
     },
 
     /**
         This method will call the server side controller to obtain all chesspieces and assign them to the correct location
     */
-    handleNewChessBoard: function(cmp,chessboard,helper){
-        debugger;
+    handleNewChessBoard: function(cmp,chessboard,helper)
+    {
         var action = cmp.get('c.getBoardPieces');
         action.setParams({'game':chessboard.Id});
         action.setCallback(this,function(response)
@@ -112,17 +111,16 @@
                     var transposedMove = this.transposeMove(move,cmp);
                     var e = $A.get('e.c:Chessboard_Location_Move_Event');
                     e.setParams({
-                        
                             'move':transposedMove,
                             'chesspiece':this.transposeChessPiece(chesspiece,cmp),
                             'targetPiece':this.transposeChessPiece(targetPiece,cmp)
-                        
-                        
                     });
                     e.fire();
 
+                    //Mark the location to which the piece moved as a target.
                     helper.markLocations(cmp,[('' + (transposedMove.X_Destination__c) + (transposedMove.Y_Destination__c))],'target');
-                    
+
+                    //Update the chessboard
                     cmp.set('v.activeGame',r.chessboard);
                     if(r.chessboard.Winning_Player__c == cmp.get('v.currentUser'))
                     {
@@ -157,7 +155,12 @@
     {
         var action = cmp.get('c.createNewMove');
         
-        action.setParams({'chesspiece': this.transposeChessPiece(chesspiece,cmp), 'newX':this.transposeCoord(newX,7,cmp), 'newY':this.transposeCoord(newY,7,cmp), 'special': special});
+        action.setParams({
+            'chesspiece': this.transposeChessPiece(chesspiece,cmp),
+            'newX':this.transposeCoord(newX,7,cmp),
+            'newY':this.transposeCoord(newY,7,cmp),
+            'special': special
+        });
         action.setCallback(this,function(response){
             if(!cmp.isValid())
                 return;
@@ -174,6 +177,7 @@
         })
         $A.enqueueAction(action);
 
+        //Mark the target location
         helper.markLocations(cmp,[''+(newX) + (newY)],'target');
 
     },
@@ -184,6 +188,8 @@
     transposeCoord: function(x,total,cmp)
     {
         var color = cmp.get('v.playerColor');
+        //Chesspiece coordinates on the server put white on top
+        //White piece coordinates are transposed to put the in front of the player.
         if(color == 'White')
         {
             return total - x;
@@ -231,34 +237,29 @@
     */
     getPossibleLocations: function(loc,locations,color,turn)
     {
-        ;
         var returnList = [];
         var l;
-        if(loc.piece.Type__c == 'Pawn')
+
+        switch(loc.piece.Type__c)
         {
-            this.handlePawnLogic(loc,locations,returnList,color,turn)
-            // loc.selected = true;
-            
-        }
-        else if(loc.piece.Type__c == 'Knight')
-        {
-            this.handleKnightLogic(loc,locations,returnList,color);
-        }
-        else if(loc.piece.Type__c == 'Rook')
-        {
-            this.handleRookLogic(loc,locations,returnList,color);
-        }
-        else if(loc.piece.Type__c == 'Bishop')
-        {
-            this.handleBishopLogic(loc,locations,returnList,color);
-        }
-        else if(loc.piece.Type__c == 'Queen')
-        {
-            this.handleQueenLogic(loc,locations,returnList,color);
-        }
-        else if(loc.piece.Type__c == 'King')
-        {
-            this.handleKingLogic(loc,locations,returnList,color);
+            case 'Pawn':
+                this.handlePawnLogic(loc,locations,returnList,color,turn);
+                break;
+            case 'Knight':
+                this.handleKnightLogic(loc,locations,returnList,color);
+                break;
+            case 'Rook':
+                this.handleRookLogic(loc,locations,returnList,color);
+                break;
+            case 'Bishop':
+                this.handleBishopLogic(loc,locations,returnList,color);
+                break;
+            case 'Queen':
+                this.handleQueenLogic(loc,locations,returnList,color);
+                break;
+            case 'King':
+                this.handleKingLogic(loc,locations,returnList,color);
+                break;
         }
         return returnList;
     },
@@ -268,7 +269,6 @@
     */
     handlePawnLogic : function(loc,locations,returnList,color,turn)
     {
-        
         var l;
         var x = loc.piece.X_Coord__c;
         var y = loc.piece.Y_Coord__c;
@@ -298,6 +298,8 @@
             var l = locations[x][y];
             if(!$A.util.isEmpty(l.piece))
             {
+                //En_Passent_Turn__c is set on the server when the pawn moves two forward. It tells us that the target pieces
+                //is vulnerable for enpassant in turn x
                 return l.piece.Type__c == 'Pawn' && l.piece.En_Passant_Turn__c == turn && l.piece.Piece_Color__c != color;
             }
         }
