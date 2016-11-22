@@ -1,0 +1,5 @@
+API Version,Create,Delete,Description,Is Active,Notify For Fields,Notify For Operations,SOQL Query,Topic Name,Undelete,Update
+"34.0","true","false","","true","Select","All","SELECT Id, Name, Player_Status__c,Status__c, User__c,Player_Name__c,Challenged_By__c,Challenged_By_Name__c FROM LoggedInPlayer__c","LoggedInPlayer","false","true"
+"34.0","true","true","","true","Referenced","Create","SELECT Id, Challenged_User__c, Game_Type__c, CreatedById,Challenged_User_Name__c, Challenging_User_Name__c FROM Player_Challenge__c","UserGameChallenge","false","false"
+"35.0","true","false","","true","Referenced","Create","SELECT Id,CreatedById,ChessBoard__c,ChessPiece__c,X_Destination__c, X_Origin__c,Y_Destination__c,Y_Origin__c,En_Passant__c,Castling__c, X_Direction__c, Y_Direction__c,Target_Piece__c FROM ChessBoardMove__c","NewChessboardMove","false","false"
+"35.0","true","false","","true","All","Create","SELECT Id,Current_Player__c,Game_Status__c,Player_Black__c,Player_White__c,Winning_Player__c,Black_Name__c,White_Name__c,Current_Turn__c FROM ChessBoard__c","NewChessBoard","false","false"
