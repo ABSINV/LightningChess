@@ -6,7 +6,7 @@
 		var location_container = cmp.find('location_container').getElement();
 
 		//Add or remove selected class
-		var isSelected = cmp.get('v.isSelected');
+		var isSelected = cmp.get('v.isMarked');
 		if(isSelected)
 			$A.util.addClass(location_container,'selected');
 		else

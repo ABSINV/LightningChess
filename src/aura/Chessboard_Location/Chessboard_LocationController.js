@@ -3,6 +3,7 @@
         Method call upon component init.
     */
 	doInit: function (cmp, event, helper) {
+	    debugger;
         var location = cmp.get('v.location');
         //Assign an initial piece to the location. If none by default then the piece remains empty.
         cmp.set('v.piece',location.piece);
@@ -16,13 +17,13 @@
     */
      handleLocationClick: function(cmp,event,helper)
     {
-        if(!cmp.get('v.isSelected'))
+        if(!cmp.get('v.isMarked'))
             helper.notifyAsSelected(cmp);
         else
             helper.notifyAsTarget(cmp);
     },
 
-    handleDragStart : function(cmp,event,helper)
+    handleDrag : function(cmp,event,helper)
     {
         helper.notifyAsSelected(cmp);
     },
@@ -32,12 +33,12 @@
         helper.notifyAsTarget(cmp);
     },
 
-    handleDragOver : function(cmp,event,helper)
+    handleOver: function(cmp,event,helper)
     {
-        if(cmp.get('v.isSelected'))
-            event.preventDefault();
+        if(cmp.get('v.isMarked'))
+        event.preventDefault();
     },
-    
+
     /*
         Handles a move event. Based on the provided data on the move object the location will update its state.
     */
@@ -106,7 +107,7 @@
                 selected = true;
             
             location.selected = selected;
-            cmp.set('v.isSelected',selected); 
+            cmp.set('v.isMarked',selected);
         }
         else if(type == "target")
         {

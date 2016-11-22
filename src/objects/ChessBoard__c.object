@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -70,19 +66,22 @@
         <fullName>Current_Player__c</fullName>
         <externalId>false</externalId>
         <label>Current Player</label>
-        <picklist>
-            <picklistValues>
-                <fullName>White</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Black</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>White</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Black</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Current_Turn__c</fullName>
@@ -111,23 +110,26 @@
         <fullName>Game_Status__c</fullName>
         <externalId>false</externalId>
         <label>Game Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>New</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ongoing</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Finished</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ongoing</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Finished</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Player_Black__c</fullName>

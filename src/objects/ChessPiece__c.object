@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -99,53 +95,59 @@
         <fullName>Piece_Color__c</fullName>
         <externalId>false</externalId>
         <label>Piece Color</label>
-        <picklist>
-            <picklistValues>
-                <fullName>White</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Black</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>White</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Black</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Pawn</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Knight</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bishop</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rook</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Queen</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>King</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pawn</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Knight</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bishop</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rook</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Queen</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>King</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>X_Coord__c</fullName>

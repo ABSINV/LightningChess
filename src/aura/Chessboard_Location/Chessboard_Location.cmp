@@ -2,7 +2,7 @@
     <!-- Component attributes -->
     <aura:attribute name="location" type="Object"></aura:attribute>
     
-    <aura:attribute name="isSelected" type="Boolean" access="private" description="Flag to define if the location is selected"></aura:attribute>
+    <aura:attribute name="isMarked" type="Boolean" access="private" description="Flag to define if the location is selected"></aura:attribute>
     <aura:attribute name="isTarget" type="Boolean" access="private" description="Flag to define if the location was a selected as a target"></aura:attribute>
 
     <aura:attribute name="piece" type="ChessPiece__c" access="private" description="The piece that is currently assigned to this location"></aura:attribute>
@@ -21,8 +21,10 @@
 
     <!-- body -->
     <div aura:id="location_container" class="ChessBoardLocation" onclick="{!c.handleLocationClick}">
-        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}">
-            
+        <div aura:id="piece_container" class="{!'content ' + v.piece.Piece_Color__c+v.piece.Type__c}"
+        draggable="true" ondragstart="{!c.handleDrag}"
+        ondrop="{!c.handleDrop}" ondragover="{!c.handleOver}">
+
         </div>
     </div>
 

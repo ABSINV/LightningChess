@@ -18,11 +18,11 @@
     <aura:iteration var="row" items="{!v.locations}">
         <aura:iteration var="location" items="{!row}">
             <c:Chessboard_Location location="{!location}" select="{!c.handleLocationSelect}" target="{!c.handleLocationTarget}" />
-        </aura:iteration>   
-    </aura:iteration>  
+        </aura:iteration>
+    </aura:iteration>
 
-    <c:Promotion_Modal ></c:Promotion_Modal>     
-        
+    <c:Promotion_Modal ></c:Promotion_Modal>
+
     <c:StreamingAPIListener listeners="NewChessboardMove"/>
 
 

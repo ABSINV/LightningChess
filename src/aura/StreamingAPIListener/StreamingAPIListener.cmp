@@ -7,6 +7,6 @@
     <aura:handler name="destroy" value="{!this}" action="{!c.closeConnections}"/>
 
 	<!-- Set attributes-->
-    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="sessionId" type="String" access="private"/>
     <aura:attribute name="listeners" type="String"/>
 </aura:component>

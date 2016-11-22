@@ -23,9 +23,9 @@
         </div>
         <div class="slds-col slds-large-size--3-of-12 slds-medium-size--4-of-6 slds-small-size--4-of-6" style="position:relative;">
             <aura:if isTrue="{! !empty(v.activeGame)}">
-                <div class="top-panel" style="padding-left:10px;">
+                <div class="top-panel" style="line-height:1.5; padding-left:10px;">
                     <ul class="slds-list--vertical slds-has-cards--space has-selections">
-                        <li class="{! 'slds-list__item' + (!v.myMove ? ' slds-theme--inverse' :'')}">
+                        <li class="{! 'slds-list__item' + (!v.myMove ? ' slds-theme--inverse' :' other-player')}">
                             <div class="slds-tile slds-tile--board">
                                 <p class="slds-tile__title slds-truncate">
                                   <p class="slds-text-heading--medium">Opponent</p>
@@ -46,9 +46,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="bottom-panel" style="width:100%;padding-left:10px;">
+                <div class="bottom-panel" style="line-height:1.5;width:100%;padding-left:10px;">
                     <ul class="slds-list--vertical slds-has-cards--space has-selections">
-                        <li class="{! 'slds-list__item' + (v.myMove ? ' slds-theme--inverse' :'')}">
+                        <li class="{! 'slds-list__item' + (v.myMove ? ' slds-theme--inverse' :' other-player')}">
                             <div class="slds-tile slds-tile--board">
                                 <p class="slds-tile__title slds-truncate">
                                   <p class="slds-text-heading--medium">You</p>

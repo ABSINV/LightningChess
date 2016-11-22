@@ -6,21 +6,18 @@
 
     <aura:handler event="c:StreamingEvent" action="{!c.handleStreamingEvent}" />
 
-    <aura:if isTrue="{! (v.challenges.length == 0)}">
-    	<div>No active challenges</div>
-    	
-    </aura:if>
 
-    <aura:iteration var="challenge" items="{!v.challenges}">
-        <div class="slds-media slds-media--center">
+
+    <!--<aura:iteration var="challenge" items="{!v.challenges}">
+        <div class="slds-media slds-media&#45;&#45;center">
         		<div class="slds-media__figure">
-                    <button class="slds-button slds-button--icon-inverse" onclick="{!c.acceptChallenge}" id="{!challenge.Id}">
-                        <c:Svg class="slds-button__icon slds-button__icon--large accept-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#approval">
+                    <button class="slds-button slds-button&#45;&#45;icon-inverse" onclick="{!c.acceptChallenge}" id="{!challenge.Id}">
+                        <c:Svg class="slds-button__icon slds-button__icon&#45;&#45;large accept-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#approval">
                         </c:Svg>
                         <span class="slds-assistive-text">Accept</span>
                     </button>
-                    <button class="slds-button slds-button--icon-inverse" id="{!challenge.Id}" onclick="{!c.rejectChallenge}" >
-                        <c:Svg class="slds-button__icon slds-button__icon--large reject-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
+                    <button class="slds-button slds-button&#45;&#45;icon-inverse" id="{!challenge.Id}" onclick="{!c.rejectChallenge}" >
+                        <c:Svg class="slds-button__icon slds-button__icon&#45;&#45;large reject-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
                         </c:Svg>
                         <span class="slds-assistive-text">Reject</span>
                     </button>
@@ -29,5 +26,54 @@
 	    			<p>You have been challenged by {!challenge.Challenging_User_Name__c}</p>
 	    		</div>
 	    	</div>
-    </aura:iteration>
+    </aura:iteration>-->
+
+    <ul class="slds-has-dividers--around-space">
+        <aura:if isTrue="{! (v.challenges.length == 0)}">
+            <li class="slds-item challenge-card">
+                <div class="slds-tile slds-tile--board">
+
+                    <div class="slds-media slds-media--center">
+                        <div class="slds-media__body">
+                            No active challenges
+                        </div>
+                    </div>
+
+
+                    <div class="slds-tile__detail slds-text-body--small">
+
+                    </div>
+                </div>
+            </li>
+        </aura:if>
+        <aura:iteration var="challenge" items="{!v.challenges}">
+            <li class="slds-item challenge-card">
+                <div class="slds-tile slds-tile--board">
+
+                    <div class="slds-media slds-media--center">
+                        <div class="slds-media__figure">
+                            <button class="slds-button slds-button--icon-inverse" onclick="{!c.acceptChallenge}" id="{!challenge.Id}">
+                                <c:Svg class="slds-button__icon slds-button__icon--large accept-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#approval">
+                                </c:Svg>
+                                <span class="slds-assistive-text">Accept</span>
+                            </button>
+                            <button class="slds-button slds-button--icon-inverse" id="{!challenge.Id}" onclick="{!c.rejectChallenge}" >
+                                <c:Svg class="slds-button__icon slds-button__icon--large reject-icon" xlinkHref="/resource/SLDS0121/assets/icons/action-sprite/svg/symbols.svg#close">
+                                </c:Svg>
+                                <span class="slds-assistive-text">Reject</span>
+                            </button>
+                        </div>
+                        <div class="slds-media__body">
+                            <p>You have been challenged by {!challenge.Challenging_User_Name__c}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="slds-tile__detail slds-text-body--small">
+
+                    </div>
+                </div>
+            </li>
+        </aura:iteration>
+    </ul>
 </aura:component>

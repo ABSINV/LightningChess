@@ -19,3 +19,24 @@
 .THIS .my-tab{
     height:100%;
 }
+
+.THIS .panel-background, .THIS.panel-background
+{
+    background-color: rgba(255, 255, 255, 0.3)!important;
+}
+.THIS .subtxt{
+    color:#5e1818 ;
+    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff;
+    font-size:20px;
+}
+
+.THIS .ls-title {
+	font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
+	font-size: 54px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+	color:#5e1818 ;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}

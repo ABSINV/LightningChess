@@ -8,17 +8,35 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-    <div class='slds-grid'>
+
+    <div class="slds-grid slds-box slds-theme--default panel-background slds-grid--align-spread" style="margin-bottom:10px;">
+
+        <div class="slds-grid slds-grid--vertical-align-center">
+            <span class="ls-title">Lightning Chess</span>
+        </div>
+
+        <div class="slds-grid slds-grid--vertical-align-end">
+            <div style="background-color:white;padding:5px;">
+                <img src="/resource/absilogo" width="100"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class='slds-grid slds-grid--vertical-stretch'>
+
+
+
 <!-- Game location -->
-        <div class="slds-col slds-size--4-of-6" style="padding-right:10px;">
-        	<div class="slds-box slds-theme--default" aura:id="game_location" style="line-height:1;">
-<!--             	<c:ChessBoard currentUser="{!v.currentUser}"></c:ChessBoard>
+        <div class="slds-col slds-size--4-of-6 slds-grid slds-grid--vertical-stretch" style="padding-right:10px;">
+        	<div class="slds-box slds-theme--default panel-background" aura:id="game_location" style="width:100%;line-height:0">
+<!--
  -->        </div>
         </div>
 
 <!-- User & Challenge panel -->
-        <div class="slds-col slds-size--2-of-6 right-side-panel">
-        	<div class="slds-tabs--scoped" style="height:100%;position:relative">
+        <div class="slds-col slds-size--2-of-6 right-side-panel slds-grid slds-grid--vertical-stretch">
+        	<div class="slds-tabs--scoped" style="display:flex;flex-direction:column;position:relative">
                 <!-- Tabs -->
         		<ul class="slds-tabs--scoped__nav" role="tablist">
         			<li class="{! 'slds-tabs--scoped__item slds-text-heading--label ' + ((v.currentTab == 'users') ? 'slds-active' : '')}" title="Item One" role="presentation" onclick="{!c.selectTab}" data-name="users">
@@ -34,21 +52,21 @@
     			</ul>
 
                 <!-- User list -->
-    			<div aura:id="user-tab" class="slds-tabs--scoped__content slds-show right-panel-tab" role="tabpanel" aria-labelledby="tab-scoped-1__item" style="background-color:#FDFDFD; position: relative;">
+    			<div aura:id="user-tab" class="slds-tabs--scoped__content slds-show right-panel-tab panel-background" role="tabpanel" aria-labelledby="tab-scoped-1__item" style="flex:1;position: relative;">
         		    <c:PlayerList currentUser='{!v.currentUser}'></c:PlayerList>
                     
         		</div>
 
                 <!-- Challenge list -->
-	            <div aura:id="challenge-tab" class="slds-tabs--scoped__content slds-hide right-panel-tab" role="tabpanel" aria-labelledby="tab-scoped-2__item" style="background-color:#FDFDFD;position: relative;">
+	            <div aura:id="challenge-tab" class="slds-tabs--scoped__content slds-hide right-panel-tab panel-background" role="tabpanel" aria-labelledby="tab-scoped-2__item" style="flex:1;position: relative;">
                     <c:PlayerChallengeList currentUser="{!v.currentUser}" challenges="{!v.challenges}"></c:PlayerChallengeList>
 	            </div>
-                
+
             </div>
         </div>
     </div>
 
-   
+
     <c:StreamingAPIListener listeners="NewChessBoard,LoggedInPlayer,UserGameChallenge">
 
     </c:StreamingAPIListener>

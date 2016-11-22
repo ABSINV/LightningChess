@@ -52,62 +52,34 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Challenged_User_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>Challenged_User__r.FirstName + &apos; &apos; + Challenged_User__r.LastName</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Challenged User Name</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Challenged_User__c</fullName>
+        <fullName>Player_1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Challenged User</label>
+        <label>Player 1</label>
         <referenceTo>User</referenceTo>
-        <relationshipName>Player_Challenges</relationshipName>
+        <relationshipName>Games</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Challenging_User_Name__c</fullName>
+        <fullName>Player_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <formula>CreatedBy.FirstName + &apos; &apos; +  CreatedBy.LastName</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Challenging User Name</label>
+        <label>Player 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Games1</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Lookup</type>
     </fields>
-    <fields>
-        <fullName>Game_Type__c</fullName>
-        <externalId>false</externalId>
-        <label>Game Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Chess</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <label>Player Challenge</label>
+    <label>Game</label>
     <nameField>
-        <displayFormat>PC-{0}</displayFormat>
-        <label>Player Challenge Name</label>
+        <displayFormat>Game - {0000}</displayFormat>
+        <label>Game Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Player Challenges</pluralLabel>
+    <pluralLabel>Games</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

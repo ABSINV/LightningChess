@@ -33,8 +33,9 @@
             <aura:iteration var="user" items="{!v.players}">
                 <li class="slds-item player-card">
                     <div class="slds-tile slds-tile--board">
-                        <button style="float:right;" class="slds-button slds-button--brand" data-user="{!user.User__c}" label="Challenge" onclick="{!c.challengeUser}">Challenge</button>
-
+                        <aura:if isTrue="{!user.Player_Status__c == 'Available'}">
+                            <button style="float:right;" class="slds-button slds-button--neutral" data-user="{!user.User__c}" label="Challenge" onclick="{!c.challengeUser}">Challenge</button>
+                        </aura:if>
                         <div class="{! 'slds-media slds-media--center ' + ((user.Player_Status__c == 'Available') ? 'status-available' : '')}">
                             <div class="slds-media__figure">
                                 <c:Svg class="slds-icon slds-icon--small slds-icon-text-default status-color" xlinkHref="/resource/SLDS23/assets/icons/action-sprite/svg/symbols.svg#user">
