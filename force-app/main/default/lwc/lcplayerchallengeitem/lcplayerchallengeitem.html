@@ -1,0 +1,27 @@
+<!--
+ - Created by lievenj on 2/28/2019.
+ -->
+
+<!-- lcPlayerChallengeItem -->
+<template>
+    <li class="slds-item challenge-card">
+        <div class="slds-tile slds-tile--board">
+
+            <div class="slds-media slds-media--center">
+                <div class="slds-media__figure">
+                    <lightning-button-icon variant="border-inverse" icon-name="action:approval" onclick={acceptChallenge}></lightning-button-icon>
+                    <lightning-button-icon variant="border-inverse" icon-name="action:close" onclick={rejectChallenge}></lightning-button-icon>
+                </div>
+
+                <div class="slds-media__body">
+                    <p>You have been challenged by {challenge.Challenging_User_Name__c}</p>
+                </div>
+            </div>
+
+
+            <div class="slds-tile__detail slds-text-body--small">
+
+            </div>
+        </div>
+    </li>
+</template>

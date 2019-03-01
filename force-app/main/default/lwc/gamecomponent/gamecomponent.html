@@ -1,0 +1,36 @@
+<!--
+ - Created by lievenj on 2/26/2019.
+ -->
+
+<!-- generalGameComponent -->
+<template>
+
+    <div class='slds-grid slds-grid--vertical-stretch'>
+        <!-- Game location -->
+        <div class="slds-col slds-size--4-of-6 slds-grid slds-grid--vertical-stretch" style="padding-right:10px;">
+            <div class="slds-box slds-theme--default panel-background" style="width:100%;line-height:0">
+
+            </div>
+        </div>
+
+        <!-- User & Challenge panel -->
+        <div class="slds-col slds-size--2-of-6 right-side-panel slds-grid slds-grid--vertical-stretch">
+
+            <lightning-tabset class="tabs">
+                <lightning-tab label="Users">
+                    <c-lcplayerlist current-user={userId}></c-lcplayerlist>
+                </lightning-tab>
+                <lightning-tab label={challengeLabel} data-tab="challenges">
+                    <c-lcplayerchallengelist current-user={userId} onchallengecountchange={handleChallengeCountChange}></c-lcplayerchallengelist>
+                </lightning-tab>
+            </lightning-tabset>
+
+        </div>
+    </div>
+
+
+    <!--<c:StreamingAPIListener listeners="NewChessBoard,LoggedInPlayer,UserGameChallenge">-->
+
+    <!--</c:StreamingAPIListener>-->
+    <c-streaminglistener listeners="NewChessBoard,LoggedInPlayer,UserGameChallenge"></c-streaminglistener>
+</template>

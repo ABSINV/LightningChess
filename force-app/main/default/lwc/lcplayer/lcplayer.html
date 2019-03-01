@@ -1,0 +1,31 @@
+<!--
+ - Created by lievenj on 2/28/2019.
+ -->
+
+<!-- lcPlayer -->
+<template>
+    <div class="slds-tile slds-tile--board">
+        <button if:true={userAvailable} style="float:right;" class="slds-button slds-button--neutral" data-user={user.User__c} onclick={challengeUser}>Challenge</button>
+
+        <div class={classList}>
+            <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-utility-announcement status-color" title="Description of icon when needed">
+                    <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/action-sprite/svg/symbols.svg?#user"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Description of icon when needed</span>
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-grid slds-grid--align-spread">
+                    <h3 class="slds-truncate"> {user.Name} </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-tile__detail slds-text-body--small">
+
+        </div>
+    </div>
+
+</template>
