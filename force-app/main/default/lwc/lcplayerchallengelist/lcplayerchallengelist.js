@@ -18,7 +18,7 @@ export default class Lcplayerchallengelist extends LightningElement {
     pageRef
 
     get hasChallenges(){
-        return !(this.challenges == undefined || this.challenges == null || this.challenges.length == 0);
+        return !(this.challenges === undefined || this.challenges == null || this.challenges.length === 0);
     }
 
     connectedCallback(){
@@ -27,22 +27,24 @@ export default class Lcplayerchallengelist extends LightningElement {
     }
 
     handleStreamingEvent(data){
-        debugger;
-        var obj = data.sObject;
-        var e = data.event;
-        if(e.type == 'created')
+        let obj = data.sObject;
+        let e = data.event;
+        if(data.eventType !== 'UserGameChallenge')
+            return;
+
+        if(e.type === 'created')
         {
-            if(obj.Challenged_User__c == this.currentUser)
+            if(obj.Challenged_User__c === this.currentUser)
             {
                 this.challenges.push(obj);
             }
             this.notifyChallengeCount();
         }
-        else if (e.type == 'deleted')
+        else if (e.type === 'deleted')
         {
-            for(var i = 0; i < this.challenges.length;i++)
+            for(let i = 0; i < this.challenges.length;i++)
             {
-                if(this.challenges[i].Id == obj.Id)
+                if(this.challenges[i].Id === obj.Id)
                 {
                     this.challenges.splice(i,1);
                     break;
@@ -60,8 +62,9 @@ export default class Lcplayerchallengelist extends LightningElement {
         var challenge = event.detail.challenge;
         var status = event.detail.status;
 
+        // eslint-disable-next-line no-unused-vars
         handePlayerChallenge({status:status,challengeId:challenge.Id}).then(result => {
-
+            
         });
 
 

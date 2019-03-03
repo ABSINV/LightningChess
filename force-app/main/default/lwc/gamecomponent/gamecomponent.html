@@ -5,16 +5,23 @@
 <!-- generalGameComponent -->
 <template>
 
-    <div class='slds-grid slds-grid--vertical-stretch'>
+    <div class='slds-grid slds-grid_vertical-stretch'>
         <!-- Game location -->
-        <div class="slds-col slds-size--4-of-6 slds-grid slds-grid--vertical-stretch" style="padding-right:10px;">
-            <div class="slds-box slds-theme--default panel-background" style="width:100%;line-height:0">
+        <div class="slds-col slds-size_4-of-6 slds-grid slds-grid_vertical-stretch" style="padding-right:10px;">
+            <div class="slds-box slds-theme_default panel-background" style="width:100%;line-height:0">
+                
+                <template if:false={activeGame}>
+                    <span>No active game</span>
+                </template>
+                <template if:true={activeGame}>
+                    <c-lc-chessboard current-user={userId} active-game={activeGame}></c-lc-chessboard>
+                </template>
 
             </div>
         </div>
 
         <!-- User & Challenge panel -->
-        <div class="slds-col slds-size--2-of-6 right-side-panel slds-grid slds-grid--vertical-stretch">
+        <div class="slds-col slds-size_2-of-6 right-side-panel slds-grid slds-grid_vertical-stretch">
 
             <lightning-tabset class="tabs">
                 <lightning-tab label="Users">
