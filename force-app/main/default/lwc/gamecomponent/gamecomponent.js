@@ -47,4 +47,9 @@ export default class gamecomponent extends LightningElement {
 
         this.activeGame = data.sObject;
     }
+
+    handleGameChange(event)
+    {
+        this.activeGame = event.detail;
+    }
 }

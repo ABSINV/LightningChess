@@ -14,7 +14,7 @@
                     <span>No active game</span>
                 </template>
                 <template if:true={activeGame}>
-                    <c-lc-chessboard current-user={userId} active-game={activeGame}></c-lc-chessboard>
+                    <c-lc-chessboard ongamechange={handleGameChange} current-user={userId} active-game={activeGame}></c-lc-chessboard>
                 </template>
 
             </div>

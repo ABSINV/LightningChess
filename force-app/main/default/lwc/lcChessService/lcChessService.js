@@ -51,6 +51,21 @@ export function transposeCoord(x,total)
     return total - x;
 }
 
+export function transposeMove(move,transposeRequired)
+{
+    if(transposeRequired)
+    {
+        move.X_Destination__c = transposeCoord(move.X_Destination__c,7)
+        move.Y_Destination__c = transposeCoord(move.Y_Destination__c,7)
+        move.X_Origin__c = transposeCoord(move.X_Origin__c,7)
+        move.Y_Origin__c = transposeCoord(move.Y_Origin__c,7);
+        move.X_Direction__c = transposeCoord(move.X_Direction__c,0);
+        move.Y_Direction__c = transposeCoord(move.Y_Direction__c,0);
+    }
+
+    return move;
+}
+
 export function getPossibleLocations(location,locations,playerColor,currentTurn)
 {
     let returnList = [];

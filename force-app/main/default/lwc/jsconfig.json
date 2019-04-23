@@ -6,16 +6,16 @@
             "c/gamecomponent": [
                 "gamecomponent/gamecomponent.js"
             ],
-            "c/lc-chessboard": [
-                "lcChessboard/lcChessboard.js"
-            ],
-            "c/lc-chessboard-location": [
-                "lcChessboardLocation/lcChessboardLocation.js"
-            ],
-            "c/lc-chess-service": [
+            "c/lcChessService": [
                 "lcChessService/lcChessService.js"
             ],
-            "c/lc-current-player-pannel": [
+            "c/lcChessboard": [
+                "lcChessboard/lcChessboard.js"
+            ],
+            "c/lcChessboardLocation": [
+                "lcChessboardLocation/lcChessboardLocation.js"
+            ],
+            "c/lcCurrentPlayerPannel": [
                 "lcCurrentPlayerPannel/lcCurrentPlayerPannel.js"
             ],
             "c/lcplayer": [
@@ -41,5 +41,10 @@
     "include": [
         "**/*",
         "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ]
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
 }
