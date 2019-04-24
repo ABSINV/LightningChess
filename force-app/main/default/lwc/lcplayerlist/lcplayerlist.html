@@ -1,0 +1,19 @@
+<!--
+ - Created by lievenj on 2/27/2019.
+ -->
+
+<!-- lcPlayerList -->
+<template>
+    <div class="playerList">
+
+        <ul class="slds-has-dividers--around-space slds-p-horizontal--small">
+            <template for:each={players} for:item="user">
+                <li key={user.Id} class="slds-item player-card">
+                    <c-lcplayer onplayerchallenge={challengePlayer} user={user}></c-lcplayer>
+                </li>
+            </template>
+        </ul>
+
+    </div>
+
+</template>

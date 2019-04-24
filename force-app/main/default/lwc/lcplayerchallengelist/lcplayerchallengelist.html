@@ -1,0 +1,33 @@
+<!--
+ - Created by lievenj on 2/28/2019.
+ -->
+
+<!-- lcPlayerChallengeList -->
+<template>
+
+    <ul class="slds-has-dividers--around-space slds-p-horizontal--small">
+        <template if:false={hasChallenges}>
+            <li class="slds-item challenge-card">
+                <div class="slds-tile slds-tile--board">
+
+                    <div class="slds-media slds-media--center">
+                        <div class="slds-media__body">
+                            No active challenges
+                        </div>
+                    </div>
+
+
+                    <div class="slds-tile__detail slds-text-body--small">
+
+                    </div>
+                </div>
+            </li>
+        </template>
+        <template for:each={challenges} for:item="challenge">
+            <c-lcplayerchallengeitem key={challenge.Id} challenge={challenge} onchallengeresponse={handleChallengeResponse}></c-lcplayerchallengeitem>
+        </template>
+    </ul>
+
+
+
+</template>
