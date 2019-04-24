@@ -1,8 +1,8 @@
 <template>
     
     <div class='slds-grid slds-grid_vertical-stretch' style="width:100%;">
-        <div class="slds-col slds-large-size_9-of-12 slds-medium-size_4-of-6 slds-small-size_4-of-6 slds-grid slds-grid_align-center">
-            <div style="width:75%;">
+        <div class="slds-col slds-large-size_7-of-12 slds-medium-size_4-of-6 slds-small-size_4-of-6 slds-grid slds-grid_align-center">
+            <div style="width:100%;">
                 <template for:each={locations} for:item="row">
                     <template for:each={row} for:item="location">
                         <c-lc-chessboard-location key={location.Id} location={location} onlocationselect={handleLocationSelect} onlocationtarget={handleLocationTarget}></c-lc-chessboard-location>
@@ -10,7 +10,7 @@
                 </template>
             </div>
         </div>
-        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_4-of-6 slds-small-size_4-of-6" style="position:relative;">
+        <div class="slds-col slds-large-size_5-of-12 slds-medium-size_2-of-6 slds-small-size_2-of-6" style="position:relative;">
             
             <c-lc-current-player-pannel opponent={opponent} player={player} my-move={myMove}></c-lc-current-player-pannel>      
            

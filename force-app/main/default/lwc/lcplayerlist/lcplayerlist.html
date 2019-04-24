@@ -6,7 +6,7 @@
 <template>
     <div class="playerList">
 
-        <ul class="slds-has-dividers--around-space">
+        <ul class="slds-has-dividers--around-space slds-p-horizontal--small">
             <template for:each={players} for:item="user">
                 <li key={user.Id} class="slds-item player-card">
                     <c-lcplayer onplayerchallenge={challengePlayer} user={user}></c-lcplayer>
