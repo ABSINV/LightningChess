@@ -1,0 +1,50 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/gamecomponent": [
+                "gamecomponent/gamecomponent.js"
+            ],
+            "c/lcChessService": [
+                "lcChessService/lcChessService.js"
+            ],
+            "c/lcChessboard": [
+                "lcChessboard/lcChessboard.js"
+            ],
+            "c/lcChessboardLocation": [
+                "lcChessboardLocation/lcChessboardLocation.js"
+            ],
+            "c/lcCurrentPlayerPannel": [
+                "lcCurrentPlayerPannel/lcCurrentPlayerPannel.js"
+            ],
+            "c/lcplayer": [
+                "lcplayer/lcplayer.js"
+            ],
+            "c/lcplayerchallengeitem": [
+                "lcplayerchallengeitem/lcplayerchallengeitem.js"
+            ],
+            "c/lcplayerchallengelist": [
+                "lcplayerchallengelist/lcplayerchallengelist.js"
+            ],
+            "c/lcplayerlist": [
+                "lcplayerlist/lcplayerlist.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ],
+            "c/streaminglistener": [
+                "streaminglistener/streaminglistener.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}
